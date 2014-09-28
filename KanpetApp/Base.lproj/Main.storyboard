@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="nAk-8h-8bL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361p" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="nAk-8h-8bL">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -9,7 +9,7 @@
         <scene sceneID="0qg-Xq-blG">
             <objects>
                 <tableViewController id="9EY-Xd-E0Y" customClass="HomeViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="237" sectionHeaderHeight="22" sectionFooterHeight="22" id="szH-FJ-vQv">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="237" sectionHeaderHeight="22" sectionFooterHeight="22" id="szH-FJ-vQv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -21,19 +21,16 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <sections>
-                            <tableViewSection id="g7S-x0-vCR">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="237" id="exi-6o-Q0D" customClass="HomeTableViewCell">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="exi-6o-Q0D" id="5z9-N5-0tL">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" red="0.85318039670000001" green="0.45057462700000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="237" id="exi-6o-Q0D" customClass="HomeTableViewCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="exi-6o-Q0D" id="5z9-N5-0tL">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="9EY-Xd-E0Y" id="9Zd-OW-5r0"/>
                             <outlet property="delegate" destination="9EY-Xd-E0Y" id="6qm-gQ-v7v"/>
@@ -126,19 +123,19 @@
                                     <constraint firstAttribute="height" constant="132" id="COO-ET-Bhf"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="e9R-xj-AYd">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="settingCellOne" id="e9R-xj-AYd">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e9R-xj-AYd" id="b6i-k2-k8p">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="JzY-50-c9A">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="settingCellTwo" id="JzY-50-c9A">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JzY-50-c9A" id="KTs-4V-P3F">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="8xw-fz-Z8t">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="settingCellThr" id="8xw-fz-Z8t">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8xw-fz-Z8t" id="SFD-g5-uXv">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -176,11 +173,11 @@
                                 <exclude reference="xQg-Nr-0GC"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="He8-ux-KG5"/>
+                                <exclude reference="iyq-2E-WZ5"/>
                                 <exclude reference="g9T-rO-BLP"/>
                                 <exclude reference="hXV-og-bwY"/>
                                 <exclude reference="qv3-bb-soH"/>
-                                <exclude reference="He8-ux-KG5"/>
-                                <exclude reference="iyq-2E-WZ5"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -189,11 +186,11 @@
                                 <include reference="xQg-Nr-0GC"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="He8-ux-KG5"/>
+                                <include reference="iyq-2E-WZ5"/>
                                 <include reference="g9T-rO-BLP"/>
                                 <include reference="hXV-og-bwY"/>
                                 <include reference="qv3-bb-soH"/>
-                                <include reference="He8-ux-KG5"/>
-                                <include reference="iyq-2E-WZ5"/>
                             </mask>
                         </variation>
                     </view>

@@ -14,12 +14,23 @@
 #import "JSONKit.h"
 @interface VedioViewController (){
     CyberPlayerController *cbPlayerController;
+    NSString *shareID;
+    NSString *uk;
 }
 
 @end
 
 @implementation VedioViewController
-
+- (id)initWithFrame:(CGRect)frame withUserCamera:(UserCamera *)userCamera
+{
+    self = [super init];
+    if (self) {
+        self.view.frame = frame;
+        shareID = userCamera.shareID;
+        uk = userCamera.uk;
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -36,25 +47,30 @@
     [cbPlayerController.view setFrame: CGRectMake(0, (CGRectGetHeight(self.view.frame)-200)/2, 320, 200)];
     //将视频显示view添加到当前view中
     [self.view addSubview:cbPlayerController.view];
-    [self startPlayback];
     //注册监听，当播放器完成视频的初始化后会发送CyberPlayerLoadDidPreparedNotification通知，
     //此时naturalSize/videoHeight/videoWidth/duration等属性有效。
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onpreparedListener:)
                                                  name: CyberPlayerLoadDidPreparedNotification
                                                object:nil];
-    UITapGestureRecognizer *tap3Gesture = nil;
-    tap3Gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickListener:)];//touch action
-    tap3Gesture.numberOfTapsRequired = 1;
-    tap3Gesture.cancelsTouchesInView = NO;
-    tap3Gesture.delaysTouchesEnded = NO;
-    [cbPlayerController.view addGestureRecognizer:tap3Gesture];
+//    UITapGestureRecognizer *tap3Gesture = nil;
+//    tap3Gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickListener:)];//touch action
+//    tap3Gesture.numberOfTapsRequired = 1;
+//    tap3Gesture.cancelsTouchesInView = NO;
+//    tap3Gesture.delaysTouchesEnded = NO;
+//    [cbPlayerController.view addGestureRecognizer:tap3Gesture];
     [super viewDidLoad];
 
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self startPlayback];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [cbPlayerController stop];
+//    cbPlayerController = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super viewWillDisappear:animated];
 }
 - (void)startPlayback{
@@ -62,7 +78,7 @@
     __block NSURL *url;
     __block typeof(self) selfs = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        NSString *urlStr = [[KanpetDataSouse sharedDataSource] getVedioUrlWithShardID:_shareID withUK:_uk];
+        NSString *urlStr = [[KanpetDataSouse sharedDataSource] getVedioUrlWithShardID:shareID withUK:uk];
         url = [NSURL URLWithString:urlStr];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (url) {
@@ -98,7 +114,7 @@
 }
 - (void) onpreparedListener: (NSNotification*)aNotification
 {
-    NSLog(@"%@",aNotification.object);
+//    NSLog(@"%@",aNotification.object);
 }
 - (void)onClickListener:(NSNotification*)aNotification
 {

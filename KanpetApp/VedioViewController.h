@@ -11,6 +11,6 @@
 @interface VedioViewController : UIViewController
 
 @property (nonatomic,strong) UserCamera *userCamera;
-@property (nonatomic,strong) NSString *shareID;
-@property (nonatomic,strong) NSString *uk;
+
+- (id)initWithFrame:(CGRect)frame withUserCamera:(UserCamera *)userCamera;
 @end

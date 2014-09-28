@@ -98,6 +98,7 @@ static KanpetDataSouse *dataSource = nil;
 //vedio URL
 -(NSString *)getVedioUrlWithShardID:(NSString *)shardID withUK:(NSString *)uk
 {
+    NSLog(@"shareID = %@++ Uk = %@",shardID,uk);
     NSString *url = [NSString stringWithFormat:@"https://pcs.baidu.com/rest/2.0/pcs/device?method=liveplay&shareid=%@&uk=%@",shardID,uk];
     NSDictionary *nstr = [self getJsonWithUrl:url];
     if (nstr) {

@@ -63,7 +63,6 @@
                 if (dataArray.count != 0) {
                     [_noDataView removeFromSuperview];
                     [self.tableView reloadData];
-                    [self.tableView headerEndRefreshing];
                 }
             }else{
                 MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
@@ -75,6 +74,7 @@
                 [hud hide:YES afterDelay:1];
                 [self performSegueWithIdentifier:@"login" sender:self];
             }
+            [self.tableView headerEndRefreshing];
         });
     });
 }
@@ -107,7 +107,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellWithIdentifier = @"Cell";
+    static NSString *CellWithIdentifier = @"deCell";
     HomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellWithIdentifier];
     if (cell == nil) {
         cell = [[HomeTableViewCell alloc]  initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellWithIdentifier];
@@ -118,8 +118,8 @@
     cell.VedioImage.image = [UIImage imageNamed:@"cry"];
     __block typeof(cell) cells = cell;
     __block NSString *url;
+    __block UserCamera *item = [dataArray objectAtIndex:indexPath.row];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        UserCamera *item = [dataArray objectAtIndex:indexPath.row];
         url = [[KanpetDataSouse sharedDataSource] getImageUrlWithShardID:item.shareID withUK:item.uk];
         dispatch_async(dispatch_get_main_queue(), ^{
             SDWebImageManager *manager = [SDWebImageManager sharedManager];
@@ -148,11 +148,8 @@
     if (dataArray.count<=indexPath.row) {
         return;
     }
-    VedioViewController *vedioVC = [[VedioViewController alloc] init];
-    vedioVC.view.frame = self.view.frame;
-    vedioVC.userCamera = [dataArray objectAtIndex:indexPath.row];
-    vedioVC.shareID = [dataArray[indexPath.row] shareID];
-    vedioVC.uk = [dataArray[indexPath.row] uk];
+    UserCamera *model = [dataArray objectAtIndex:indexPath.row];
+    VedioViewController *vedioVC = [[VedioViewController alloc] initWithFrame:self.view.bounds withUserCamera:model];
     [self.navigationController pushViewController:vedioVC animated:YES];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -2595,8 +2595,11 @@ static int jk_encode_add_atom_to_buffer(JKEncodeState *encodeState, void *object
   // XXX XXX XXX XXX
 
   BOOL workAroundMacOSXABIBreakingBug = NO;
+#pragma clang diagnostic push
+    
+#pragma clang diagnostic ignored"-Wdeprecated-objc-pointer-introspection"
   if(JK_EXPECT_F(((NSUInteger)object) & 0x1)) { workAroundMacOSXABIBreakingBug = YES; goto slowClassLookup; }
-
+#pragma clang diagnostic pop
        if(JK_EXPECT_T(object_getClass(object) == encodeState->fastClassLookup.stringClass))     { isClass = JKClassString;     }
   else if(JK_EXPECT_T(object_getClass(object) == encodeState->fastClassLookup.numberClass))     { isClass = JKClassNumber;     }
   else if(JK_EXPECT_T(object_getClass(object) == encodeState->fastClassLookup.dictionaryClass)) { isClass = JKClassDictionary; }
