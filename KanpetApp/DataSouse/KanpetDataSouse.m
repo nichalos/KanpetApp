@@ -68,14 +68,6 @@ static KanpetDataSouse *dataSource = nil;
                     [data addObject:userCamera];
                 }
             }
-            //临时数据
-            if(data.count == 0)
-            {
-                UserCamera *userCamera = [[UserCamera alloc] init];
-                userCamera.shareID = SHAREID;
-                userCamera.uk = UK;
-                [data addObject:userCamera];
-            }
             [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"USER_NAME"];
             [[NSUserDefaults standardUserDefaults] setObject:password forKey:@"USER_PASSWORD"];
         }
@@ -98,7 +90,6 @@ static KanpetDataSouse *dataSource = nil;
 //vedio URL
 -(NSString *)getVedioUrlWithShardID:(NSString *)shardID withUK:(NSString *)uk
 {
-    NSLog(@"shareID = %@++ Uk = %@",shardID,uk);
     NSString *url = [NSString stringWithFormat:@"https://pcs.baidu.com/rest/2.0/pcs/device?method=liveplay&shareid=%@&uk=%@",shardID,uk];
     NSDictionary *nstr = [self getJsonWithUrl:url];
     if (nstr) {
